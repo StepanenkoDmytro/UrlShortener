@@ -12,5 +12,6 @@ public interface ShortUrlRepository {
     String findByFullURL(String fullURL);
     void save(String shortURL, String longURL);
     void delete(String shortURL);
+    boolean isExist(String longURL);
 
 }

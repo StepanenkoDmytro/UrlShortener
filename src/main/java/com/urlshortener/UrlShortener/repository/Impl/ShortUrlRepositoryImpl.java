@@ -42,4 +42,10 @@ public class ShortUrlRepositoryImpl implements ShortUrlRepository {
     public void delete(String shortURL) {
         urlMap.remove(shortURL);
     }
+
+    @Override
+    public boolean isExist(String longURL) {
+
+        return urlMap.containsValue(longURL);
+    }
 }
