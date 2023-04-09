@@ -12,14 +12,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/")
-public class URLController {
+public class UrlController {
     /*
     Додати Base auth
     Написати тести
      */
     private final ShortUrlService shortUrlService;
 
-    public URLController(ShortUrlService shortUrlService) {
+    public UrlController(ShortUrlService shortUrlService) {
         this.shortUrlService = shortUrlService;
     }
 

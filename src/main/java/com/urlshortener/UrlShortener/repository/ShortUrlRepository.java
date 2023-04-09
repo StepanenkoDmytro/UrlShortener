@@ -1,9 +1,5 @@
 package com.urlshortener.UrlShortener.repository;
 
-import com.urlshortener.UrlShortener.entity.ShortURL;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 import java.util.Map;
 
 public interface ShortUrlRepository {
