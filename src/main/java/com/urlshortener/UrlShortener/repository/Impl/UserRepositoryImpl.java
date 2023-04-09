@@ -29,6 +29,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean isExist(User user) {
+        return dataBase.contains(user);
+    }
+
+    @Override
     public void save(User user) {
 //        if(dataBase == null){
 //            dataBase = new ArrayList<>();

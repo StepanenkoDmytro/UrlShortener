@@ -14,7 +14,6 @@ import java.util.Map;
 @RequestMapping("/api/v1/")
 public class UrlController {
     /*
-    Додати Base auth
     Написати тести
      */
     private final ShortUrlService shortUrlService;
