@@ -1,13 +1,14 @@
-package com.urlshortener.UrlShortener.security;
+package com.urlshortener.security;
 
-import com.urlshortener.UrlShortener.entity.User;
-import com.urlshortener.UrlShortener.repository.UserRepository;
+import com.urlshortener.entity.User;
+import com.urlshortener.exception.UserNotFoundException;
+import com.urlshortener.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
@@ -17,7 +18,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new UserNotFoundException(String.format("User with username = %s not found", username)));
         return SecurityUser.fromUser(user);
     }
 }

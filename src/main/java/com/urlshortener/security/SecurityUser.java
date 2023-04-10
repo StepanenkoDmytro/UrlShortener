@@ -1,7 +1,7 @@
-package com.urlshortener.UrlShortener.security;
+package com.urlshortener.security;
 
-import com.urlshortener.UrlShortener.entity.Status;
-import com.urlshortener.UrlShortener.entity.User;
+import com.urlshortener.entity.Status;
+import com.urlshortener.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
