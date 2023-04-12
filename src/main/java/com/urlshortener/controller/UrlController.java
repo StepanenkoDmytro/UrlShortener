@@ -30,7 +30,7 @@ public class UrlController {
     }
 
     @PostMapping("shortener")
-    public ResponseEntity<String> addLong(@RequestBody FullUrl url) {
+    public ResponseEntity<String> saveUrl(@RequestBody FullUrl url) {
         String fullUrl = url.getFullUrl();
         UrlValidator urlValidator = new UrlValidator();
         if (!urlValidator.isValid(fullUrl)) {
@@ -46,7 +46,7 @@ public class UrlController {
         return new ResponseEntity<>(shortURL, HttpStatus.OK);
     }
 
-    @GetMapping("list")
+    @GetMapping("list-links")
     public ResponseEntity<Object> getShort() {
         List<UrlShortener> shortURL = shortUrlService.getAll();
         return new ResponseEntity<>(shortURL, HttpStatus.OK);
@@ -55,8 +55,12 @@ public class UrlController {
     @GetMapping("{shortURL}")
     public ResponseEntity<Object> redirect(@PathVariable String shortURL) {
         HttpHeaders headers = new HttpHeaders();
-        String longURL = shortUrlService.getByShortUrl(shortURL);
-        headers.setLocation(URI.create(longURL));
+        String fullUrl = shortUrlService.getByShortUrl(shortURL);
+        if (fullUrl == null) {
+            String response = String.format("URL: %s not found", shortURL);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+        headers.setLocation(URI.create(fullUrl));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 }

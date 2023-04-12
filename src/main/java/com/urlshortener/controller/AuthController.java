@@ -21,7 +21,7 @@ public class AuthController {
     @PostMapping("registration")
     public ResponseEntity<String> registration(@RequestBody AuthRequestDto user) {
         if (userService.isExist(user.getUsername())) {
-            return new ResponseEntity<>("User is already exist", HttpStatus.BAD_GATEWAY);
+            return new ResponseEntity<>("User is already exist", HttpStatus.BAD_REQUEST);
         }
         User newUser = new User(user.getUsername(), user.getPassword());
         userService.save(newUser);

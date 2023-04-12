@@ -1,10 +1,10 @@
-# UrlShortener-API
+# Simple UrlShortener-API
 
 ## Installation
 
 ```
 # Clone this project from github
-$ git clone https://github.com/StepanenkoDmytro/UrlShortener
+git clone https://github.com/StepanenkoDmytro/UrlShortener
 
 # Clears the target directory and builds the project
 mvn clean install
